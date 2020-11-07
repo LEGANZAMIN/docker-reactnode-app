@@ -19,3 +19,15 @@ after_success:
     - docker push lsmin01/docker-frontend
     - docker push lsmin01/docker-backend
     - docker push lsmin01/docker-nginx
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-northeast-2"
+    app: "docker-fullstack-a[["
+    env: DockerFullstackA-env
+    bucket_name: elasticbeanstalk-ap-northeast-2-067375555374
+    bucket_path: "docker-fullstack-a[["
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_ACCESS_SECRET
